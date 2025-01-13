@@ -39,3 +39,7 @@ npx sequelize db:create
 - creating error folder in utils 
 - starting with service errors
 - created validation error file and a general app error file
+
+- generated a new Booking Model using sequelize 
+- migrated our Booking Model after adding some basic values inside it
+
