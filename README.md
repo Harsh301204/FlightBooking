@@ -36,3 +36,6 @@ npx sequelize db:create
 - created a index file in router file that will redirect our request to index file in v1 folder 
 
 - now syncing our db
+- creating error folder in utils 
+- starting with service errors
+- created validation error file and a general app error file
