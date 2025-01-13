@@ -43,3 +43,9 @@ npx sequelize db:create
 - generated a new Booking Model using sequelize 
 - migrated our Booking Model after adding some basic values inside it
 
+- adding new migration to update and modify
+```
+npx sequelize migration:create --name <name of file>
+```
+- adding coloumn using this migration file created to our database (addColoumn function)
+- adding the new coloumn in booking model
