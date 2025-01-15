@@ -5,7 +5,7 @@ const app = express()
 
 const  db  = require('./models/index.js')
 const apiRoutes = require('./routes/index.js')
-const { PORT } = require('./config/ServerConfig.js')
+const { PORT  } = require('./config/ServerConfig.js')
 
 const SetupAndStartServer = () => {
 
@@ -21,6 +21,7 @@ const SetupAndStartServer = () => {
         //     // console.log("YEAS")
         //     db.sequelize.sync({ alter : true })
         // }
+    
     })
 }
 

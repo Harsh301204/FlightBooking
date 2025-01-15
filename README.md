@@ -49,3 +49,10 @@ npx sequelize migration:create --name <name of file>
 ```
 - adding coloumn using this migration file created to our database (addColoumn function)
 - adding the new coloumn in booking model
+ 
+- now writing logic for our booking
+- first we will call a get request from our booking service to flights and search service to get flight details
+- using axios to call flight service 
+- we will return flight.data as axios returns a in a data array
+- since we now booked a ticket we need to update the flight data that some seats has been occupied
+- 
