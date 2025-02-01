@@ -26,18 +26,31 @@ class BookingRepository {
 
     async updateBooking(bookingId, data) {
         try {
-            // await Booking.update(data, {
-            //     where: {
-            //         id: bookingId
-            //     }
-            // })
-            // return true
             const booking = await Booking.findByPk(bookingId);
             await booking.update(data)
             await booking.save();
             return booking
 
         } catch (error) {
+            throw new AppError(
+                'RepositoryError',
+                'can not update Booking',
+                'There was some issue while Updating the Booking , please try again later',
+                StatusCodes.INTERNAL_SERVER_ERROR
+
+            )
+        }
+    }
+
+    async FindBooking(id){
+        try {
+            console.log("start of repo")
+            const booking = await Booking.findByPk(id);
+            console.log(booking)
+            return booking
+
+        } catch (error) {
+            console.log('Error in repo ' , error)
             throw new AppError(
                 'RepositoryError',
                 'can not update Booking',

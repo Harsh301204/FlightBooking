@@ -15,6 +15,7 @@ class BookingService {
             const FlightId = data.FlightId
             const getFlightURL = `${FLIGHT_PATH}/api/v1/flights/${FlightId}`
             const response = await axios.get(getFlightURL)
+            console.log(response.data.data)
             const flightdata = response.data.data
             let flightPrice = flightdata.price
             if (data.NumberOfSeats > flightdata.totalSeats) {
@@ -26,16 +27,16 @@ class BookingService {
             const TotalCost = data.NumberOfSeats * flightPrice
             // console.log(TotalCost)
             const BookingPayload = { ...data, TotalCost }
-            // console.log(BookingPayload)
+            // // console.log(BookingPayload)
             const booking = await this.bookingRepository.create(BookingPayload)
 
             const updateFlightURL = `${FLIGHT_PATH}/api/v1/flights/${booking.FlightId}`
             await axios.patch(updateFlightURL, { totalSeats: flightdata.totalSeats - booking.NumberOfSeats })
 
-            const FinalBooking = await this.bookingRepository.updateBooking(booking.id,  {Status: 'Booked' })
+            const FinalBooking = await this.bookingRepository.updateBooking(booking.id, { Status: 'Booked' })
 
-
-            // return booking;
+            // return response.data.data
+            // // return booking;
             return FinalBooking
 
 
@@ -48,7 +49,38 @@ class BookingService {
 
     }
 
+    async getBooking(id) {
+        try {
+            const data = await this.bookingRepository.FindBooking(id)
+            return data
+        } catch (error) {
+            console.log("error in service " , error)
+            if (error.name == 'RepositoryError' || error.name == 'ValidationError') {
+                throw error
+            }
+            throw new ServerError()
 
+
+        }
+
+
+    }
+
+    async CancelBooking(id)
+    {
+        try {
+            const data = await this.bookingRepository.FindBooking(id)
+            data.Status = 'Cancelled';
+            await data.save();
+            return data
+        } catch (error) {
+            console.log("error in service " , error)
+            if (error.name == 'RepositoryError' || error.name == 'ValidationError') {
+                throw error
+            }
+            throw new ServerError()
+        }
+    }
 }
 
 module.exports = BookingService

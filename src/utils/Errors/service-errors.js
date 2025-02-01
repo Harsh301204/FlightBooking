@@ -2,7 +2,7 @@ const { StatusCodes } = require('http-status-codes')
 
 class ServerError extends Error {
     constructor (
-        name = "serviceerror",
+        name = "serviceError",
         message = "something went wrong",
         explaination = "Service layer error",
         statusCode = StatusCodes.INTERNAL_SERVER_ERROR
@@ -10,11 +10,11 @@ class ServerError extends Error {
     )
     {
         super()
-        this.name = "ServiceError",
+        this.name = name,
         this.message = message,
         this.explaination = explaination,
         this.statusCode = statusCode
     }
 }
 
-module.exports = ServerError
+module.exports = ServerError 
