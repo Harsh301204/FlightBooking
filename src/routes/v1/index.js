@@ -1,10 +1,10 @@
 const express = require('express')
 
-const {  BookingController } = require('../../controllers/index')
+const { BookingController }  = require('../../controllers/index')
 const booking = require('../../models/booking')
 
 // const { createChannel } = require('../../utils/messageQueue')
-// const channel = await createChannel()
+
 const bookingController = new BookingController()
 
 const router = express.Router()

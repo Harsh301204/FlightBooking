@@ -13,16 +13,16 @@ class BookingController {
     constructor() {
     }
 
-
     async sendMessageToQueue(req, res) {
 
         const channel = await createChannel()
+
         const payload = {
             data: {
                 subject: "This is a Notification from Queue",
                 content: "Some Queue will subscribe this",
-                recepientEmail: "ghost04704@gmail.com",
-                notificationTime: "2025-01-20T12:30:00.000"
+                recepientEmail: "harshsharma301a@gmail.com",
+                notificationTime: new Date()
 
             },
             service: 'CREATE_TICKET'
@@ -77,9 +77,9 @@ class BookingController {
         }
     }
 
-    async cancel(req , res){
+    async cancel(req, res) {
         try {
-            
+
             const result = await bookingService.CancelBooking(req.params.id)
             console.log(result)
             return res.status(StatusCodes.ACCEPTED).json({

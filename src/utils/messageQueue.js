@@ -6,10 +6,11 @@ const {MESSAGE_BROKER_URL , EXCHANGE_NAME} = require('../config/ServerConfig')
 const createChannel = async () => {
     try {
         const connection = await amqplib.connect(MESSAGE_BROKER_URL); // Setted up a connection with rabbitMQ server
-        const channel = await connection.createChannel(); //  Created a channel 
+        const channel = await connection.createChannel(); //  Created a channel , this will help us to communicate with msg broker
 
         await channel.assertExchange(EXCHANGE_NAME, 'direct', false)   // Here we are setting up the exchange distributer
         return channel
+        
     } catch (error) {
         throw error
     }
